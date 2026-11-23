@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Record Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">SR</div><div><strong>CampusDesk</strong><small>Student Records</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#dashboard"><span>▦</span> Dashboard</a>
+      <a class="nav" href="#records"><span>▤</span> Student Records</a>
+      <div class="sidebar-note"><div class="note-icon">✦</div><strong>PPS Mini Project</strong><p>A simple student record application with input validation and exception handling.</p></div>
+      <div class="side-footer">Made for learning · 2026</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">STUDENT MANAGEMENT</div><h1>Student Record Manager</h1><p class="sub">Add, organize and manage student information in one place.</p></div>
+        <div class="top-pill"><span class="status-dot"></span> Local demo mode</div>
+      </header>
+
+      <section class="stats">
+        <article class="stat-card"><div class="stat-top"><span>Total students</span><span class="stat-icon purple">♙</span></div><strong id="totalCount">0</strong><small>Records saved</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Average marks</span><span class="stat-icon blue">％</span></div><strong id="averageMarks">0%</strong><small>Across all students</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Pass percentage</span><span class="stat-icon green">✓</span></div><strong id="passRate">0%</strong><small>Students scoring 40 or above</small></article>
+      </section>
+
+      <section class="content-grid" id="dashboard">
+        <section class="panel form-panel">
+          <div class="panel-heading"><div><div class="eyebrow">RECORD DETAILS</div><h2 id="formTitle">Add new student</h2></div><span class="form-badge">● Required fields</span></div>
+          <form id="studentForm" novalidate>
+            <input type="hidden" id="editId" />
+            <div class="field"><label for="name">Full name <span>*</span></label><input id="name" type="text" placeholder="e.g. Aarav Sharma" maxlength="50" /><small class="hint">Use letters and spaces only.</small></div>
+            <div class="field-row">
+              <div class="field"><label for="roll">Roll number <span>*</span></label><input id="roll" type="text" placeholder="e.g. 24" maxlength="12" /></div>
+              <div class="field"><label for="course">Course / Branch <span>*</span></label><select id="course"><option value="">Select course</option><option>B.Tech CSE</option><option>B.Tech IT</option><option>BCA</option><option>B.Sc CS</option><option>Other</option></select></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="year">Academic year <span>*</span></label><select id="year"><option value="">Select year</option><option>First Year</option><option>Second Year</option><option>Third Year</option><option>Fourth Year</option></select></div>
+              <div class="field"><label for="marks">Marks (out of 100) <span>*</span></label><input id="marks" type="number" placeholder="e.g. 78" min="0" max="100" step="1" /></div>
+            </div>
+            <div class="field"><label for="email">Email address <span>*</span></label><input id="email" type="email" placeholder="student@example.com" maxlength="80" /></div>
+            <div id="formMessage" class="message" role="alert" aria-live="polite"></div>
+            <div class="form-actions"><button class="btn btn-primary" type="submit" id="saveBtn">＋ Add student</button><button class="btn btn-light" type="button" id="resetBtn">Clear form</button></div>
+          </form>
+          <div class="validation-note"><span>ⓘ</span><p><strong>Validation & exception handling</strong><br/>The app checks empty fields, name format, email format, duplicate roll numbers and marks range. Errors are handled with try/catch.</p></div>
+        </section>
+
+        <section class="panel records-panel" id="records">
+          <div class="panel-heading records-heading"><div><div class="eyebrow">DATABASE OVERVIEW</div><h2>Student records</h2></div><button class="btn btn-outline" id="exportBtn">↓ Export CSV</button></div>
+          <div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search name, roll no. or course..." /></div><select id="filterCourse" class="filter"><option value="">All courses</option><option>B.Tech CSE</option><option>B.Tech IT</option><option>BCA</option><option>B.Sc CS</option><option>Other</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>ROLL NO.</th><th>COURSE</th><th>MARKS</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="recordsBody"></tbody></table><div id="emptyState" class="empty-state"><div class="empty-icon">▤</div><strong>No student records yet</strong><p>Add your first student using the form.</p></div></div>
+          <div class="table-footer"><span id="recordCount">Showing 0 records</span><span>Stored in this browser</span></div>
+        </section>
+      </section>
+      <footer class="footer">Student Record Manager <span>·</span> PPS Mini Project <span>·</span> HTML, CSS & JavaScript</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
